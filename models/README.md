@@ -1,0 +1,1 @@
+Brief instructions on downloading and accessing the model (stored on OneDrive or AWS).
