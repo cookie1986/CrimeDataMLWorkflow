@@ -7,10 +7,6 @@ from config.settings import settings
 dotenv_path = os.path.join(os.path.dirname(__file__), '..', 'config','.env')
 load_dotenv(dotenv_path)
 
-# fetch the path files
-# master_data_file = os.getenv("MASTER_DATA_FILE")
-# local_data_file_path = os.getenv("LOCAL_DATA_FILE_PATH")
-
 
 if not settings.MASTER_DATA_FILE:
     raise Exception("No environment variable named MASTER_DATA_FILE was found in the .env file.")
@@ -29,11 +25,9 @@ def check_master_file_exists():
 
 def duplicate_master_data_locally():
     """Duplicate the master data to the local repository."""
-    # if not os.path.exists(master_data_file):
     if not os.path.exists(settings.MASTER_DATA_FILE):
         FileNotFoundError(f"Master data file does not exist: {settings.MASTER_DATA_FILE}")
     
-    # os.makedirs(local_data_file_path, exist_ok=True)
     os.makedirs(settings.LOCAL_DATA_FILE_PATH, exist_ok=True)
     local_file = os.path.join(settings.LOCAL_DATA_FILE_PATH, os.path.basename(settings.MASTER_DATA_FILE))
     shutil.copy2(settings.MASTER_DATA_FILE, local_file)
