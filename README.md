@@ -1,5 +1,3 @@
-# CrimeDataMLWorkflow
-
 ## About the Data
 The data used to train the model is securely stored by City, University of London and subject to a data sharing agreement between the VISION consortium and a UK police force.
 
