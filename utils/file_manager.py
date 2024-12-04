@@ -24,13 +24,14 @@ def check_master_file_exists():
     
 
 def duplicate_master_data_locally():
-    """Duplicate the master data to the local repository."""
+    """Duplicate the master data to the local repository as "data.csv"."""
     if not os.path.exists(settings.MASTER_DATA_FILE):
-        FileNotFoundError(f"Master data file does not exist: {settings.MASTER_DATA_FILE}")
+        raise FileNotFoundError(f"Master data file does not exist: {settings.MASTER_DATA_FILE}")
     
     os.makedirs(settings.LOCAL_DATA_FILE_PATH, exist_ok=True)
-    local_file = os.path.join(settings.LOCAL_DATA_FILE_PATH, os.path.basename(settings.MASTER_DATA_FILE))
+    local_file = os.path.join(settings.LOCAL_DATA_FILE_PATH, "data.csv")
     shutil.copy2(settings.MASTER_DATA_FILE, local_file)
+    print(f"Master data duplicated to: {local_file}")
 
 
 def delete_local_data():
