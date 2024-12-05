@@ -57,6 +57,8 @@ def process_dataset(
     # save the processed dataset
     df.to_csv(output_file, index=False)
 
+    return df
+
 
 def standardise_column_names(
         columns: list,
