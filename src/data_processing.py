@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from config.settings import settings
 
+
 def process_dataset(
         input_file: str,
         output_file: str,
@@ -10,7 +11,7 @@ def process_dataset(
         retain_original: bool = False
 ):
     """
-    Process the dataset by filtering columns, renaming them, removing blank rows, and optionally retaining a copy of the original file.
+    Process the dataset by filtering columns, renaming them, removing blank rows and duplicates, and optionally retaining a copy of the original file.
 
     Args:
         input_file (str): Path to the input dataset.
@@ -43,6 +44,10 @@ def process_dataset(
     # remove empty rows
     df = df.dropna(how="any")
     print(f"Length of dataset after removing empty rows: {len(df)}")
+
+    # remove duplicate rows
+    df = df.drop_duplicates()
+    print(f"Length of dataset after removing duplicate rows: {len(df)}")
 
     # rename columns if enabled
     if rename_cols:
@@ -81,20 +86,3 @@ def standardise_column_names(
         column_mapping[col] = f"x{i}"
 
     return column_mapping
-
-
-# def clean(df: pd.DataFrame) -> pd.DataFrame:
-#     """
-#     Perform basic cleaning on a dataframe:
-#         - 
-
-#     Args:
-#         df (pd.DataFrame): The input dataframe
-
-#     Returns:
-#         pd.DataFrame: The cleaned dataframe
-#     """
-
-
-
-#     return df
