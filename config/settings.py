@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     MASTER_DATA_FILE: str = Field(..., description="Path to the master data file.")
     LOCAL_DATA_FILE_PATH: str = Field(..., description="Path to the sub-directory where the local version should be stored.")
     FILTER_COLUMNS: Optional[List[str]] = Field(None, description="Optional list of columns to be included when filtering the data.")
+    REMAPPED_Y_VALS_JSON_FILE_PATH: Optional[str] = Field(None, description="Optional: Path to a JSON file that remaps original Y values to an updated schema.")
 
     class Config:
         env_file="config/.env"
