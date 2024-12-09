@@ -88,3 +88,28 @@ def standardise_column_names(
         column_mapping[col] = f"x{i}"
 
     return column_mapping
+
+
+def standardise_class_labels(text_list, mapping):
+    """
+    Standardise Y variable according to key-value pairs described in a corresponding JSON file.
+
+    JSON Example:
+        {
+            "old_Y":"new_Y
+        }
+
+    Args:
+        text_list (list): A list of labels
+        mapping (dict): Key-value pairs of text to be remapped (values are the correct form)
+
+    Returns:
+        list: A list of corrected labels.
+    """
+    updated_text = []
+    for text in text_list:
+        for key, value in mapping.items():
+            if key in text:
+                text = text.replace(key, value)
+        updated_text.append(text)
+    return updated_text
